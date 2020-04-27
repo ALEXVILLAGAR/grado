@@ -1,23 +1,91 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
+    <data-table
+    url="http://vue-datatable.test/ajax"
+    :per-page="perPage"
+    :columns="columns"
+    :body="body">
 
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</data-table>
 </template>
 
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
+export default {
+    name: 'tabla',
+    data() {
+        return {
+            users: [],
+            perPage: ['10', '25', '50'],
+            rows: this.users,
+            columns: [
+                {
+                    label: 'ID',
+                    name: 'id',
+                    filterable: true,
+                },
+                {
+                    label: 'Name',
+                    name: 'name',
+                    filterable: true,
+                },
+                {
+                    label: 'Email',
+                    name: 'email',
+                    filterable: true,
+                },
+                {
+                    label: '',
+                    name: 'View',
+                    filterable: false,
+                },
+            ],
+            body:[
+            {
+    "table-container": {
+        "table-responsive": true,
+    },
+    "table": {
+        "table": true,
+        "table-striped": true,
+        "table-dark": true,
+    },
+    "t-head": {
+
+    },
+    "t-body": {
+        
+    },
+    "t-head-tr": {
+
+    },
+    "t-body-tr": {
+        
+    },
+    "td": {
+
+    },
+    "th": {
+        
+    },
+}]   
         }
-    }
+    },
+    mounted() {
+            this.getUsers();
+        },
+    methods: {
+        dataTable(){
+         $(document).ready( function () {
+                $('#myTable').DataTable();
+            } );
+        },
+
+        getUsers(){
+            var urlUsers="users";
+            axios.get(urlUsers).then(response => (this.users = response.data,
+            this.dataTable()
+                ));
+        }
+    },
+}
+
 </script>

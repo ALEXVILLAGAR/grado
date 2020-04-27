@@ -26,5 +26,21 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        Blade::if('centro', function () {
+            return auth()->user()->rolEntidad() === 'centro de atencion';
+        });
+
+        Blade::if('control', function () {
+            return auth()->user()->rolEntidad() === 'entidad Reguladora';
+        });
+
+        Blade::if('acudiente', function () {
+            return auth()->user()->rolEntidad() === 'acudiente';
+        });
+
+        Blade::if('auxiliar', function () {
+            return auth()->user()->rolEntidad() === 'auxiliar';
+        });
     }
 }

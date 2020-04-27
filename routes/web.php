@@ -12,9 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Route::get('acudientes', 'AcudienteController@mayores')->name('acudientes');
+Route::get('listaAcudientes', 'AcudienteController@listaAcudientes')->name('lista');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('users','UserController');
+Route::resource('auxiliar','AuxiliarController');
+Route::resource('routes','RouteController');
+Route::resource('persona','PersonController');
+Route::resource('mayor','MayorController');
+Route::resource('acudiente','AcudienteController');
+Route::resource('actividades','ActividadesController');
+Route::resource('planes','PlanController');
+

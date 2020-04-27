@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\{User,Entity,Person};
 
 class User extends Authenticatable
-{
-    use Notifiable;
+{    
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'email', 'password','tipo','correo','telefono',
     ];
 
     /**
@@ -36,4 +36,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     /**
+      * User has one Entity.
+      *
+      * @return \Illuminate\Database\Eloquent\Relations\HasOne
+      */
+     public function entidad()
+     {
+         // hasOne(RelatedModel, foreignKeyOnRelatedModel = user_id, localKey = id)
+         return $this->hasOne(Entity::class);
+     }
+
+     /**
+      * User has one Person.
+      *
+      * @return \Illuminate\Database\Eloquent\Relations\HasOne
+      */
+     public function persona()
+     {
+         // hasOne(RelatedModel, foreignKeyOnRelatedModel = user_id, localKey = id)
+         return $this->hasOne(Person::class);
+     }
+
+     public function rolEntidad(){
+        return isset($this->entidad) ? $this->entidad->rol : $this->persona->rol;
+        // $this->person->rol
+    }
+
+    public function nombre(){
+        return isset($this->entidad) ? $this->entidad->name : $this->persona->nombres;
+    }
+
+    public function IdEntidad(){
+        return isset($this->entidad) ? $this->entidad->id : false;
+    }
 }

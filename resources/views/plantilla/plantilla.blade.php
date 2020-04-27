@@ -6,24 +6,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html>
     <head>
         <meta charset="utf-8">
-            <meta content="IE=edge" http-equiv="X-UA-Compatible">
+            <meta name="csrf-token" content="{{ csrf_token() }}">
                 <title>
                     APP
                 </title>
                 <!-- Tell the browser to be responsive to screen width -->
                 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+                 
                     <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" rel="stylesheet">
                     </link>
-                    <link href="{{ asset('css/card_animacion.css') }}" rel="stylesheet">
+                    {{-- <link href="{{ asset('css/card_animacion.css') }}" rel="stylesheet"> --}}
                     </link>
+                    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
                     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
                     </link>
                     <!-- Font Awesome -->
                     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
                     </link>
                     <!-- Ionicons -->
-                    <link href="{{ asset('css/ionicons.min.css.css') }}" rel="stylesheet">
-                    </link>
+                    {{-- <link href="{{ asset('css/ionicons.min.css.css') }}" rel="stylesheet">
+                    </link> --}}
                     <!-- Theme style -->
                     <link href="{{ asset('css/AdminLTE.min.css') }}" rel="stylesheet">
                     </link>
@@ -33,10 +35,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         apply the skin class to the body tag so the changes take effect. -->
                     <link href="{{ asset('css/skin-blue.min.css') }}" rel="stylesheet">
                     </link>
-                    <script defer="" src="{{ asset('js/app.js') }}">
+                    {{-- <script defer="" src="{{ asset('js/app.js') }}">
                     </script>
-                    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" rel="stylesheet">
-                    </link>
+                    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> --}}
+                    
 
                     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
                     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,8 +49,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- Google Font -->
                     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" rel="stylesheet">
                     </link>
-                    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
-                    </link>
+                    {{-- <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+                    </link> --}}
                 </meta>
             </meta>
         </meta>
@@ -84,12 +86,14 @@ desired effect
                 <!-- contenido de la vista  -->
                 <section class="content container-fluid">
                     @yield('contenido')
+
                 </section>
                 <!-- /.content -->
+
             </div>
             <!-- /.content-wrapper -->
             <!-- Main Footer -->
-            <footer class="main-footer">
+            {{-- <footer class="main-footer">
                 <!-- To the right -->
                 <div class="pull-right hidden-xs">
                     Anything you want
@@ -103,7 +107,7 @@ desired effect
                     .
                 </strong>
                 todos los derechos reservados.
-            </footer>
+            </footer> --}}
            
             <!-- /.control-sidebar -->
             <!-- Add the sidebar's background. This div must be placed
@@ -116,20 +120,20 @@ desired effect
         <!-- jQuery 3 -->
         <script defer="" src="{{ asset('js/jquery.min.js') }}">
         </script>
-        <script src="bower_components/jquery/dist/jquery.min.js">
-        </script>
+        {{-- <script src="bower_components/jquery/dist/jquery.min.js">
+        </script> --}}
         <!-- Bootstrap 3.3.7 -->
         <script defer="" src="{{ asset('js/bootstrap.min.js') }}">
         </script>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js">
-        </script>
+        {{-- <script src="bower_components/bootstrap/dist/js/bootstrap.min.js">
+        </script> --}}
         <!-- AdminLTE App -->
         <script defer="" src="{{ asset('js/adminlte.min.js') }}">
         </script>
-        <script src="dist/js/adminlte.min.js">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js">
-        </script>
+        
+        {{-- <script src="dist/js/adminlte.min.js">
+        </script> --}}
+        
         <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

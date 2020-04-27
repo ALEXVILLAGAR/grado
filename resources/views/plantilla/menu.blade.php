@@ -9,13 +9,14 @@
             </div>
             <div class="pull-left info">
                 <p>
-                    nombre
+                    {{ Auth::user()->rolEntidad() }}             
+                    <br>                                        
                 </p>
                 <!-- Status -->
                 <a href="#">
                     <i class="fas fa-circle text-success">
                     </i>
-                    activo
+                     {{ Auth::user()->nombre() }}
                 </a>
             </div>
         </div>
@@ -32,13 +33,26 @@
                         <span> Inicio </span>
                     </a>
                 </li>
-    
-            
+               
+               @centro
+               @include('plantilla/menuHogar')
+               @endcentro
 
+               @control
+               @include('plantilla/menuRegulador')
+               @endcontrol
+
+               @acudiente
+               @include('plantilla/menuAcudiente')
+               @endacudiente
+
+               @auxiliar
+               @include('plantilla/menuAuxiliar')
+               @endauxiliar
              <li>
                 <a href="#">
                    <i class="fas fa-user"></i>
-                    perfil
+                    <span> perfil </span>
                 </a>
             </li>
             

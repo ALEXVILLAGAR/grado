@@ -1,7 +1,7 @@
 <!-- Main Header -->
 <header class="main-header">
     <!-- Logo -->
-    <a class="logo" href="{{ url('/') }}">
+    <a class="logo" href="{{ url('home') }}">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">
             <b>
@@ -70,10 +70,10 @@
                     <!-- Menu Toggle Button -->
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <!-- The user image in the navbar-->
-                        <img alt="User Image" class="user-image" src="../img/user2-160x160.jpg"/>
+                        <img alt="User Image" class="user-image" src=" {{ asset('img/user2-160x160.jpg') }}"/>
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
                         <span class="hidden-xs">
-                   {{ Auth::user()->name }}
+                 {{--   {{ Auth::user()->$entidad->name }} --}}
                             
                         </span>
                     </a>
@@ -82,8 +82,7 @@
                         <li class="user-header">
                             <img alt="User Image" class="img-circle" src="../img/user2-160x160.jpg"/>
                             <p>
-                   {{ Auth::user()->name }}
-                                
+                   {{ Auth::user()->nombre() }}                                
                                 <small>
                                     {{ Auth::user()->created_at->diffForHumans() }}
                                 </small>
