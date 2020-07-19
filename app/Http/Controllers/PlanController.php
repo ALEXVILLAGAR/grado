@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Hash;
-use App\{Plan,User,Entity};
+use App\{Plan,User,Entity,Actividad};
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
@@ -16,9 +16,10 @@ class PlanController extends Controller
      */
     public function index()
     {
-         $user = Auth()->User()->IdEntidad();
+        $user = Auth()->User()->IdEntidad();
         $planes = Plan::where('entidad_id', '=', $user)->get();
-        return view('centro.actividades.plan.planes',['planes'=>$planes]);
+        $actividades = Actividad::where('entidad_id', '=', $user)->get();
+        return view('centro.actividades.plan.planes',['planes'=>$planes],['actividades'=>$actividades]);
     }
 
     /**
@@ -39,8 +40,24 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+         $data = $request->all();
+        // dd($data['actividad']);
+         $user = Auth()->User()->IdEntidad();
+        
+         Plan::create([
+          'responsable' => '',
+          'fecha' => $data['fecha'],
+          'descripcion' => $data['descripcion'],
+          'publico' => 'no',
+          'actividad_id' => $data['actividad'],
+          'entidad_id' => $user
+         ]);
+
+        $user = Auth()->User()->IdEntidad();
+        $planes = Plan::where('entidad_id', '=', $user)->get();
+        $actividades = Actividad::where('entidad_id', '=', $user)->get();
+        return back();
+    } 
 
     /**
      * Display the specified resource.

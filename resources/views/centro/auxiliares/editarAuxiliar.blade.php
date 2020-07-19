@@ -39,9 +39,5 @@
 		<a href="{{ route('auxiliar.index') }}" title="" class="bg-dark"><h2>Regresar</h2></a>
 	</div>
 
-</div>    	
-{{-- @include('plantilla.footer') --}}
-    
-
-
+</div> 
 @endsection

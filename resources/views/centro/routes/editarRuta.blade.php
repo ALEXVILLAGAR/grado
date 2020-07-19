@@ -23,7 +23,7 @@
   </div>
   <div class="form-group col-md-12">
     <label for="descripcion"><h3>Descripción</h3></label>
-    <textarea name="descripcion" class="form-control" id="descripcion" placeholder="descripcion de la ruta" required="">
+    <textarea name="descripcion" class="form-control" id="descripcion" placeholder="descripcion de la ruta" required="" value="{{$ruta->descripcion}}">
     </textarea>
   </div>
   

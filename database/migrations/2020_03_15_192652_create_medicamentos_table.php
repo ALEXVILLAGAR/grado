@@ -7,14 +7,19 @@ use Illuminate\Database\Migrations\Migration;
 class CreateMedicamentosTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations. 
      *
-     * @return void
+     * @return void 
      */
     public function up()
     {
         Schema::create('medicamentos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nombre');
+            $table->string('descripcion');
+            $table->Integer('cantidad');
+            $table->unsignedBigInteger('entidad_id');
+            $table->foreign('entidad_id')->references('id')->on('entities');
             $table->timestamps();
         });
     }

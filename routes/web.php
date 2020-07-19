@@ -16,7 +16,8 @@ Route::get('/', function () {
 });
 
 Route::get('acudientes', 'AcudienteController@mayores')->name('acudientes');
-Route::get('listaAcudientes', 'AcudienteController@listaAcudientes')->name('lista');
+Route::get('acudiente/{mayor}', 'AcudienteController@listaAcudientes')->name('lista');
+Route::get('visitas/{id}', 'VisitasController@listaVisitas')->name('visitas');
 
 Auth::routes();
 
@@ -27,6 +28,7 @@ Route::resource('routes','RouteController');
 Route::resource('persona','PersonController');
 Route::resource('mayor','MayorController');
 Route::resource('acudiente','AcudienteController');
-Route::resource('actividades','ActividadesController');
+Route::resource('actividad','ActividadController');
 Route::resource('planes','PlanController');
-
+Route::resource('medicamento','MedicamentoController');
+Route::resource('visitas','VisitasController');

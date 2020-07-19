@@ -56,7 +56,7 @@ class User extends Authenticatable
      public function persona()
      {
          // hasOne(RelatedModel, foreignKeyOnRelatedModel = user_id, localKey = id)
-         return $this->hasOne(Person::class);
+         return $this->hasOne(Person::class,'user_id');
      }
 
      public function rolEntidad(){
@@ -70,5 +70,8 @@ class User extends Authenticatable
 
     public function IdEntidad(){
         return isset($this->entidad) ? $this->entidad->id : false;
+    }
+    public function Idpersona(){
+        return isset($this->persona) ? $this->persona->id : false;
     }
 }

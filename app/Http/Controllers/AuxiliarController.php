@@ -66,7 +66,7 @@ class AuxiliarController extends Controller
         'entidad_id' => $data['entidad_id'],
         ]);
         
-       $auxiliares = Auxiliar::all();
+       $auxiliares = Auxiliar::where('entidad_id','=',$data['entidad_id'])->get();
         return view('centro.auxiliares.auxiliares',['auxiliares'=>$auxiliares]);
     }
 
@@ -101,7 +101,7 @@ class AuxiliarController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Auxiliar $auxiliar)
-    {        
+    {         
         $auxiliar->persona->update($request->only(['nombres','apellidos','identificacion']));
         $auxiliar->persona->save();
 

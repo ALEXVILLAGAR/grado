@@ -4,7 +4,7 @@
 <div class="row">
 	<h1 class="col-md-10 text-center shadow-lg p-3 mb-5 bg-white rounded bg-info panel col-md-offset-1">Actividades</h1>
 	 
-    </div>
+    </div> 
 
     	<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
     <div class="row">
@@ -17,7 +17,7 @@
             <br>
                 <br>
                 <br>
-                    <table id="actividades" class="py-4 tabla-responsive">
+                    <table id="productos" class="py-4 tabla-responsive">
                         <thead>
                             <tr class="bg-info">
                                 <th>
@@ -32,11 +32,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($actividades as $actividad)
+                            @foreach ($actividades as $acti)
                             <tr>
-                                 <td><h3>{{$actividad->actividad }}</h3></td>
-                                 <td><h3>{{$actividad->descripcion }}</h3></td>       
-                                {{--  <td><a href="{{ route('lista',$mayor->id) }}" title="" class="btn btn-info"><i class="fas fa-eye"></i> Ver</a> --}}
+                                 <td><h3>{{$acti->actividad }}</h3></td>
+                                 <td><h3>{{$acti->descripcion }}</h3></td> 
+
+                                  <td><a href="{{ route('actividad.edit',$acti)}}" title="" class="btn btn-info"><i class="fas fa-edit"></i>
+                                  </td>
                                 
                             </tr>
                             @endforeach
@@ -52,7 +54,7 @@
         </div>
         @endif
         
-         @include('centro.actividades.gestion.crearActividad')
+        @include('centro.actividades.gestion.crearActividad')    
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     </script>
@@ -60,7 +62,7 @@
     </script>
     <script>
         function cambiar($id){
-            var url='actividades';
+            var url='productos';
             $.ajax({
                 url: url,
                 type: 'get',
@@ -82,7 +84,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
     </script>
     </div>
-{{-- @include('plantilla.footer') --}}
+
     
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers; 
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Hash;
@@ -23,6 +23,7 @@ class AcudienteController extends Controller
    }
 
     /**
+     * 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -53,7 +54,7 @@ class AcudienteController extends Controller
         $entidad_id = Auth()->User()->IdEntidad();
         $data                   = $request->all();
           // dd($data);
-        $user = User::create([
+        $user = User::create([ 
             'email' => $data['email'],
             'password' => Hash::make($data['identificacion']),
             'tipo' => 'persona',
@@ -63,7 +64,7 @@ class AcudienteController extends Controller
         $data['user_id'] = $user->id;
              $persona = Person::create([ 
                 'nombres' => $data['nombre'],
-                'apellidos' => $data['apellido'],
+                'apellidos' => $data['apellido'], 
                 'identificacion' => $data['identificacion'],
                 'rol' => 'acudiente',
                 'user_id' => $data['user_id']
@@ -73,10 +74,12 @@ class AcudienteController extends Controller
         Acudiente::create([
         'persona_id' => $data['persona_id'],
         'mayor_id' => $data['mayor_id'],
+        'entidad_id' => $entidad_id
         ]);
         
        $mayores = Mayor::where('entidad_id', '=', $entidad_id)->get();
-        return view('centro.acudientes.acudientes',['mayores'=>$mayores]);
+        // return view('centro.acudientes.acudientes',['mayores'=>$mayores]);
+        return back();
     }
 
     /**
@@ -101,7 +104,9 @@ class AcudienteController extends Controller
      */
     public function edit(Acudiente $acudiente)
     {
-        //
+        $Acudiente = $acudiente;
+        return view('centro.acudientes.editarAcudiente',['acudiente'=>$Acudiente]);
+
     }
 
     /**
@@ -111,10 +116,15 @@ class AcudienteController extends Controller
      * @param  \App\Acudiente  $acudiente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Acudiente $acudiente)
-    {
-        //
-    }
+    public function update(Request $request, Acudiente $acudiente) 
+    {          
+        $mayor = Mayor::where('entidad_id', '=', $user)->get();
+        $acudiente->persona->update($request->only(['nombres','apellidos','identificacion']));
+        $acudiente->persona->user->update($request->only(['email','telefono']));
+        $acudiente->persona->save();
+        $acudiente->persona->user->save();
+        return back(); 
+    }   
 
     /**
      * Remove the specified resource from storage.
@@ -127,13 +137,18 @@ class AcudienteController extends Controller
         //
     }
 
-
+       /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Mayor  $mayor
+     * @return \Illuminate\Http\Response
+     */
     public function listaAcudientes(Mayor $mayor)
     {
-        
-         $acudientes = Acudiente::where('mayor_id', '=', $mayor)->get();
-        dd($mayor);
-        // return view('centro.acudientes.listaAcudientes',['acudientes'=>$acudientes]);
+         // dd($mayor);
+        $Mayor = $mayor;
+         $acudientes = Acudiente::where('mayor_id', '=', $mayor->id)->get();
+        return view('centro.acudientes.listaAcudientes',['acudientes'=>$acudientes,'mayor'=>$Mayor]);
     
     }
 }

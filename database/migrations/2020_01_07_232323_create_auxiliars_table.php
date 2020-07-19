@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -15,8 +14,8 @@ class CreateAuxiliarsTable extends Migration
     {
         Schema::create('auxiliars', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('persona_id');            
-            $table->unsignedBigInteger('entidad_id');
+            $table->unsignedBigInteger('persona_id')->unsigned();            
+            $table->unsignedBigInteger('entidad_id')->unsigned();
             $table->foreign('persona_id')->references('id')->on('people');
             $table->foreign('entidad_id')->references('id')->on('entities');
             $table->timestamps();

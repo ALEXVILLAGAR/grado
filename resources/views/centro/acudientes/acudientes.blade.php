@@ -25,21 +25,20 @@
                                     Apellidos
                                 </th>
                                 <th>
-                                    Documento 
+                                    Documento  
                                 </th>
                                 <th> 
-                                    Acudientes
+                                    Acudientes 
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($mayores as $mayor)
-                            <tr>
+                            @foreach ($mayores as $mayor) 
+                            <tr> 
                                  <td><h3>{{$mayor->nombres }}</h3></td>
                                  <td><h3>{{$mayor->apellidos }}</h3></td>
                                  <td><h3>{{$mayor->identificacion }}</h3></td>
-                                 <td><a href="{{ route('lista',$mayor->id) }}" title="" class="btn btn-info"><i class="fas fa-eye"></i> Ver</a>
-                                <a href="#staticBackdrop" data-toggle="modal" data-target="#staticBackdrop" title="" class="btn btn-success"><i class="fas fa-plus-circle"></i> Agregar</a>
+                                 <td><a href="{{ route('lista',$mayor) }}" title="" class="btn btn-info"><i class="fas fa-eye"></i> Ver</a>
                             </tr>
                             @endforeach
                         </tbody>
@@ -47,7 +46,7 @@
                 </br>
             </br>
         </div>
-        @include('centro.acudientes.crearAcudiente')
+        
         @else
         <div class="alert alert-danger col-md-10 col-md-offset-1 text-center" role="alert">
              <h3>No hay adultos mayores registrados en el sistema</h3>

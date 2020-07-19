@@ -6,7 +6,7 @@
         <h3 class="modal-title" id="staticBackdropLabel">Nuevo Actividad</h3>       
       </div>
       <div class="modal-body">
-      <form action="{{ route('actividades.store') }}" method="post" accept-charset="utf-8">         
+      <form action="{{ route('actividad.store') }}" method="post" accept-charset="utf-8">         
          @csrf
   <div class="form-row">
     <div class="form-group col-md-12">
@@ -17,7 +17,6 @@
       <label for="apellido"><h3>Descripción</h3></label>
       <input type="text" class="form-control" id="descripcion" placeholder="Descripción de la actividad" name="descripcion" required="">
     </div>
-    {{-- <input type="hidden" name="mayor_id" value="{{ $mayor->id }}"> --}}
   </div>
        <div class=" text-center row">
          <button type="submit"  class="btn btn-info col-md-3 col-md-offset-2">Guardar</button> 

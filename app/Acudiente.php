@@ -13,7 +13,7 @@ class Acudiente extends Model
      * @var array
      */
     protected $fillable = [
-        'persona_id', 'mayor_id'
+        'persona_id', 'mayor_id','entidad_id'
     ];
 
     /**

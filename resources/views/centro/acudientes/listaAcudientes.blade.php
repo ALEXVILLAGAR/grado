@@ -1,13 +1,17 @@
 @extends('plantilla/plantilla')
 
 @section('contenido') 
-<div class="row">
-	<h1 class="col-md-10 text-center shadow-lg p-3 mb-5 bg-white rounded bg-info panel col-md-offset-1">Acudientes de </h1>
+<div class="row"> 
+	<h1 class="col-md-10 text-center shadow-lg p-3 mb-5 bg-white rounded bg-info panel col-md-offset-1">Acudientes de {{ $mayor->nombres }}</h1>
 	 
     </div>
 
     	<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
     <div class="row">
+        <div class="col-md-12 text-center">
+            <a href="#staticBackdrop" data-toggle="modal" data-target="#staticBackdrop" title="" class="btn btn-success"><i class="fas fa-plus-circle"></i> Agregar Acudiente</a>
+        </div>
+        
         <div class="col-md-10 col-md-offset-1 datatable">
             <br>
             </br>
@@ -26,19 +30,26 @@
                                 <th>
                                     Documento 
                                 </th>
+                                <th>
+                                    Teléfono 
+                                </th>
+                                <th>
+                                    Correo 
+                                </th>
                                 <th> 
-                                    Acudientes
+                                    Detalle
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($mayores as $mayor)
+                            @foreach ($acudientes as $acudiente)
                             <tr>
                                  <td><h3>{{$acudiente->persona->nombres }}</h3></td>
                                  <td><h3>{{$acudiente->persona->apellidos }}</h3></td>
                                  <td><h3>{{$acudiente->persona->identificacion }}</h3></td>
-                                 <td><a href="" title="" class="btn btn-info"><i class="fas fa-eye"></i> Ver</a>
-                                <a href="" title="" class="btn btn-info"><i class="fas fa-eye"></i> Agregar</a>
+                                 <td><h3>{{$acudiente->persona->user->telefono }}</h3></td>
+                                 <td><h3>{{$acudiente->persona->user->email }}</h3></td>
+                                 <td><a href="{{ route('acudiente.edit',$acudiente) }}" title="" class="btn btn-info"><i class="fas fa-edit"></i>Editar</a>
                             </tr>
                             @endforeach
                         </tbody>
@@ -47,6 +58,7 @@
             </br>
         </div>
     </div>
+    @include('centro.acudientes.crearAcudiente')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     </script>
     <script charset="utf-8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js" type="text/javascript">

@@ -1,4 +1,4 @@
-                <li>
+              {{--   <li>
                     <a href="{{ url('#') }}">
                         <!--icono de la opcion-->
                         <i class="fas fa-id-card-alt"></i>
@@ -6,9 +6,18 @@
                              Gestión de documentos 
                         </span>
                     </a>
+                </li> --}}
+                <li>
+                    <a href="{{ route('visitas',$hola=1 ) }}">
+                        <!--icono de la opcion-->
+                       <i class="fas fa-users"></i>
+                        <span>
+                            Gestión Visitas
+                        </span>
+                    </a>
                 </li>
                 <li>
-                    <a href="{{ url('#') }}">
+                    <a href="{{ route('medicamento.index') }}">
                         <!--icono de la opcion-->
                         <i class="fas fa-notes-medical"></i> 
                         <span>
@@ -58,7 +67,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="{{ route('actividades.index') }}">
+                            <a href="{{ route('actividad.index') }}">
                             Gestión de actividades
                             </a>
                         </li> 
@@ -69,7 +78,7 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ url('#') }}">
                         <!--icono de la opcion-->
                         <i class="fas fa-file-archive"></i>
@@ -77,7 +86,7 @@
                             Gestión de reportes
                         </span>
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="{{ route('routes.index') }}">
                         <!--icono de la opcion-->

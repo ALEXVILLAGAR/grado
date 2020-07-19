@@ -16,7 +16,9 @@ class CreateAcudientesTable extends Migration
         Schema::create('acudientes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('persona_id');            
-            $table->unsignedBigInteger('mayor_id');
+            $table->unsignedBigInteger('mayor_id');            
+            $table->unsignedBigInteger('entidad_id');
+            $table->foreign('entidad_id')->references('id')->on('entities');
             $table->foreign('persona_id')->references('id')->on('people');
             $table->foreign('mayor_id')->references('id')->on('mayors');
             $table->timestamps();

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Medicamento;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Hash;
+use App\{Medicamento,User,Entity};  
 use Illuminate\Http\Request;
 
 class MedicamentoController extends Controller
@@ -14,7 +16,10 @@ class MedicamentoController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth()->User()->IdEntidad();
+    $medicamentos = Medicamento::where('entidad_id','=', $user)->get();
+
+        return view('centro.medicamentos.medicamentos',['medicamentos'=>$medicamentos]);
     }
 
     /**
@@ -22,7 +27,7 @@ class MedicamentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() 
     {
         //
     }
@@ -35,7 +40,18 @@ class MedicamentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+              
+        $data = $request->all();
+        // dd($data);
+        Medicamento::create([
+        'nombre' => $data['nombre'],
+        'descripcion' => $data['descripcion'],
+        'cantidad' => $data['cantidad'],
+        'entidad_id' => Auth()->User()->IdEntidad(),
+        ]);
+        $user = Auth()->User()->IdEntidad();
+        $medicamentos = Medicamento::where('entidad_id', '=', $user)->get();
+        return view('centro.medicamentos.medicamentos',['medicamentos'=>$medicamentos]);
     }
 
     /**
@@ -48,7 +64,7 @@ class MedicamentoController extends Controller
     {
         //
     }
-
+ 
     /**
      * Show the form for editing the specified resource.
      *
@@ -57,9 +73,10 @@ class MedicamentoController extends Controller
      */
     public function edit(Medicamento $medicamento)
     {
-        //
+        $medicamento = $medicamento;
+        return view('centro.medicamentos.editarMedicamento',['medicamento'=>$medicamento]);
     }
-
+ 
     /**
      * Update the specified resource in storage.
      *
@@ -69,7 +86,12 @@ class MedicamentoController extends Controller
      */
     public function update(Request $request, Medicamento $medicamento)
     {
-        //
+         $medicamento->update($request->only(['nombre','descripcion','cantidad']));
+        $medicamento->save();
+
+        $user = Auth()->User()->IdEntidad();
+        $medicamentos = Medicamento::where('entidad_id', '=', $user)->get();
+        return view('centro.medicamentos.medicamentos',['medicamentos'=>$medicamentos]);
     }
 
     /**

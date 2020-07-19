@@ -11,13 +11,14 @@
         <a href="#staticBackdrop" data-toggle="modal" data-target="#crearPlan" title="" class="btn btn-success col-md-4 col-md-offset-4"><i class="fas fa-plus-circle"></i> Nuevo plan</a>
         <br><br>
         @if (count($planes))
+
             <div class="col-md-10 col-md-offset-1 datatable">
             <br>
             </br>
             <br>
                 <br>
                 <br>
-                    <table id="actividades" class="py-4 tabla-responsive">
+                    <table id="productos" class="py-4 tabla-responsive">
                         <thead>
                             <tr class="bg-info">
                                 <th>
@@ -35,20 +36,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($actividades as $actividad)
+                           @foreach ($planes as $plan)
+                            
                             <tr>
+                                @foreach ($actividades as $actividad)
+                                @if ($plan->actividad_id === $actividad->id)
                                  <td><h3>{{$actividad->actividad }}</h3></td>
-                                 <td><h3>{{$actividad->descripcion }}</h3></td>       
-                                {{--  <td><a href="{{ route('lista',$mayor->id) }}" title="" class="btn btn-info"><i class="fas fa-eye"></i> Ver</a> --}}
-                                
+                                 <td><h3>{{$actividad->descripcion }}</h3></td>
+                                 <td><h3>{{$actividad->responsable }}</h3></td>
+                                  <td><a href="" title="" class="btn btn-info"><i class="fas fa-eye"></i> Ver</a></td>              @endif
+                                   @endforeach
                             </tr>
+                           
                             @endforeach
                         </tbody>
                     </table>
                 </br>
             </br>
-        </div>
-       
+        </div>       
         @else
         <div class="alert alert-danger col-md-10 col-md-offset-1 text-center" role="alert">
              <h3>No hay plan de actividades registrados en el sistema</h3>
@@ -63,7 +68,7 @@
     </script>
     <script>
         function cambiar($id){
-            var url='actividades';
+            var url='productos';
             $.ajax({
                 url: url,
                 type: 'get',

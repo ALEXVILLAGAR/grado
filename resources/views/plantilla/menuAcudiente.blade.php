@@ -1,5 +1,5 @@
                 <li>
-                    <a href="{{ url('#') }}">
+                    <a href="{{ route('visitas.index') }}">
                         <!--icono de la opcion-->
                         <i class="fas fa-eye"></i>
                         <span>

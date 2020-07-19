@@ -41,7 +41,7 @@
                         		 <td><h3>{{$auxiliar->persona->nombres }}</h3></td>
                         		 <td><h3>{{$auxiliar->persona->apellidos }}</h3></td>
                                  <td><h3>{{$auxiliar->persona->identificacion }}</h3></td>
-                        		 <td><a href="{{ route('auxiliar.edit',$auxiliar) }}" title="" class="btn btn-info"><i class="fas fa-edit"></i> Editar</a>
+                        		 <td><a href="{{ route('auxiliar.edit',$auxiliar)}}" title="" class="btn btn-info"><i class="fas fa-edit"></i> Editar</a>
                         		 <a href="" title="" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> Eliminar</a></td>
                         	</tr>
                         	@endforeach
